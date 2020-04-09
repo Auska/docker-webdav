@@ -15,4 +15,4 @@ RUN \
 
 # ports and volumes
 EXPOSE 80
-VOLUME /webdav /config
+VOLUME /webdav /config /logs

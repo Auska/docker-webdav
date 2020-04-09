@@ -22,7 +22,6 @@ fi
 
 # permissions
 chown abc:abc -R \
-	/var/log/lighttpd \
-	/run \
+	/logs \
 	/webdav \
 	/config

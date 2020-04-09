@@ -1,4 +1,4 @@
 #!/usr/bin/with-contenv bash
 
 exec \
-	s6-setuidgid abc lighttpd -f /config/lighttpd.conf
+	lighttpd -f /config/lighttpd.conf
