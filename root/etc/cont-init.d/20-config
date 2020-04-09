@@ -11,17 +11,18 @@ mkdir -p /webui /mnt
 [[ ! -f /config/webdav.conf ]] && cp /defaults/webdav.conf /config/webdav.conf
 
 if [ -n "$WHITELIST" ]; then
-	sed -i "s/WHITELIST/${WHITELIST}/" /etc/lighttpd/webdav.conf
+	sed -i "s/WHITELIST/${WHITELIST}/" /config/webdav.conf
 fi
 
 if [ "$RW" == "true" ]; then
-	sed -i "s/is-readonly = \"\\w*\"/is-readonly = \"disable\"/" /etc/lighttpd/webdav.conf
+	sed -i "s/is-readonly = \"\\w*\"/is-readonly = \"disable\"/" /config/webdav.conf
 else
-	sed -i "s/is-readonly = \"\\w*\"/is-readonly = \"enable\"/" /etc/lighttpd/webdav.conf
+	sed -i "s/is-readonly = \"\\w*\"/is-readonly = \"enable\"/" /config/webdav.conf
 fi
 
 # permissions
 chown abc:abc -R \
 	/var/log/lighttpd \
+	/run \
 	/webdav \
 	/config
