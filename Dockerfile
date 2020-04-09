@@ -3,7 +3,7 @@ FROM lsiobase/alpine:3.11
 # set version label
 LABEL maintainer="Auska"
 
-ENV TZ=Asia/Shanghai RW=true WHITELIST
+ENV TZ=Asia/Shanghai RW=true
 
 # copy local files
 COPY  root /
