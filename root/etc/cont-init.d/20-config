@@ -1,0 +1,27 @@
+#!/usr/bin/with-contenv bash
+
+mkdir -p /webui /mnt
+
+# copy
+
+[[ ! -f /config/htpasswd ]] && cp /defaults/htpasswd /config/htpasswd
+
+[[ ! -f /config/lighttpd.conf ]] && cp /defaults/lighttpd.conf /config/lighttpd.conf
+
+[[ ! -f /config/webdav.conf ]] && cp /defaults/webdav.conf /config/webdav.conf
+
+if [ -n "$WHITELIST" ]; then
+	sed -i "s/WHITELIST/${WHITELIST}/" /etc/lighttpd/webdav.conf
+fi
+
+if [ "$RW" == "true" ]; then
+	sed -i "s/is-readonly = \"\\w*\"/is-readonly = \"disable\"/" /etc/lighttpd/webdav.conf
+else
+	sed -i "s/is-readonly = \"\\w*\"/is-readonly = \"enable\"/" /etc/lighttpd/webdav.conf
+fi
+
+# permissions
+chown abc:abc -R \
+	/var/log/lighttpd \
+	/webdav \
+	/config
